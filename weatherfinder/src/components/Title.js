@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 const Title = (props) => {
     let myTitle="Welcome to the the Weather Report";

@@ -29,20 +29,6 @@ class App extends Component {
     const api_call = await fetch(`
     http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_key}`);
     const data = await api_call.json();
-    // data.onreadystatechange = function(){
-    //   if(this.readyState === 4 && this.status === 200){
-    //     console.log(data);
-    //   }
-    // };
-    // var data = new XMLHttpRequest();
-    // data.open("GET","http://api.openweathermap.org/data/2.5/weather?q="+city+","+country+"&appid="+API_key, true);
-    // data.onload = function(){
-    //   var responseText = data.response;
-    // }
-    // data.send(); AJAX NOT WORKING
-    // axios.get('http://api.openweathermap.org/data/2.5/weather?q="+city+","+country+"&appid="+API_key').then(response => {
-    //   data = response.text;
-    // })
     if(city && country){
       this.setState({
         temprature : data.main.temp,
@@ -75,20 +61,31 @@ class App extends Component {
   render(){
     return(
       <div>
-        <Title title={this.state.city}/>
-        <Form getWeather={this.getWeather}/>
-        <Weather 
-          country={this.state.country}
-          temprature={this.state.temprature}
-          pressure={this.state.pressure}
-          city={this.state.city}
-          country={this.state.country}
-          speed={this.state.speed}
-          description={this.state.description}
-          minTemp={this.state.minTemp}
-          maxTemp={this.state.maxTemp} 
-          error={this.state.error}
-        />
+        <div className="wrapper">
+          <div className="main">
+            <div className="container">
+              <div className="row">
+                <div className="col-xs-5 title-container">
+                  <Title title={this.state.city}/>
+                </div>
+                <div className="col-xs-7 form-container">
+                  <Form getWeather={this.getWeather}/>
+                  <Weather 
+                    country={this.state.country}
+                    temprature={this.state.temprature}
+                    pressure={this.state.pressure}
+                    city={this.state.city}
+                    speed={this.state.speed}
+                    description={this.state.description}
+                    minTemp={this.state.minTemp}
+                    maxTemp={this.state.maxTemp} 
+                    error={this.state.error}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
